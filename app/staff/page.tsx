@@ -1,0 +1,1 @@
+import{AppShell}from"@/components/app-shell";import{ModulePage}from"@/components/module-page";export default function Staff(){return <AppShell><ModulePage title="Staff & Users" icon="👥" add="Add Staff" empty="No staff members yet" fields={['Full Name','Phone','Email','Password','Role','Permissions']}/></AppShell>}

@@ -1,0 +1,1 @@
+import{AppShell}from"@/components/app-shell";import{ModulePage}from"@/components/module-page";export default function Expenses(){return <AppShell><ModulePage title="Expenses" icon="💸" add="Add Expense" empty="No expenses yet" summary={['Total Expenses','Diesel','Toll','Driver']} fields={['Trip','Expense Type','Amount (₹)','Expense Date','Paid To','Notes']}/></AppShell>}

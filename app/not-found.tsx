@@ -1,0 +1,1 @@
+import Link from"next/link";export default function NotFound(){return <main className="auth"><h1>Page not found</h1><p className="muted">This route is not available.</p><Link className="btn" href="/dashboard">Go to Dashboard</Link></main>}

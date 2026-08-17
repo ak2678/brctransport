@@ -5,7 +5,7 @@ import { FormEvent, useState } from "react";
 import { supabase } from "../../lib/supabase";
 
 export default function Login() {
-  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
@@ -16,10 +16,8 @@ export default function Login() {
 
     setError("");
 
-    const cleanMobile = mobile.replace(/\D/g, "");
-
-    if (cleanMobile.length !== 10) {
-      setError("Please enter a valid 10-digit mobile number.");
+    if (!email.trim()) {
+      setError("Please enter your email address.");
       return;
     }
 
@@ -30,17 +28,15 @@ export default function Login() {
 
     setLoading(true);
 
-    const phone = `+91${cleanMobile}`;
-
     const { error } = await supabase.auth.signInWithPassword({
-      phone,
+      email: email.trim(),
       password,
     });
 
     setLoading(false);
 
     if (error) {
-      setError("Invalid mobile number or password.");
+      setError("Invalid email or password.");
       return;
     }
 
@@ -61,15 +57,13 @@ export default function Login() {
 
       <form onSubmit={handleLogin}>
         <div className="field">
-          <label>MOBILE NUMBER</label>
+          <label>EMAIL ADDRESS</label>
           <input
             required
-            inputMode="numeric"
-            value={mobile}
-            onChange={(e) =>
-              setMobile(e.target.value.replace(/\D/g, "").slice(0, 10))
-            }
-            placeholder="+91 10-digit mobile"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email address"
           />
         </div>
 

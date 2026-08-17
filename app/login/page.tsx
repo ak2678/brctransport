@@ -32,7 +32,13 @@ export default function Login() {
 
     const phone = `+91${cleanMobile}`;
 
-    const { error } = await supabase.auth.signInWithPassword({
+  if (!supabase) {
+  setLoading(false);
+  setError("Supabase configuration is missing.");
+  return;
+}
+    
+  const { error } = await supabase.auth.signInWithPassword({
       phone,
       password,
     });

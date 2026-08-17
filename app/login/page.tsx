@@ -30,10 +30,12 @@ export default function Login() {
 
     setLoading(true);
 
-    const phone = `+91${cleanMobile}`;
+    // Convert mobile number into the internal email
+    // used by Supabase Authentication.
+    const email = `${cleanMobile}@brc.local`;
 
     const { error } = await supabase.auth.signInWithPassword({
-      phone,
+      email,
       password,
     });
 

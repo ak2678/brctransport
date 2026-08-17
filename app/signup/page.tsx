@@ -40,6 +40,12 @@ export default function Signup() {
 
     const phone = `+91${cleanMobile}`;
 
+    if (!supabase) {
+  setLoading(false);
+  setError("Supabase configuration is missing.");
+  return;
+}
+    
     const { data, error } = await supabase.auth.signUp({
       phone,
       password,

@@ -32,13 +32,7 @@ export default function Login() {
 
     const phone = `+91${cleanMobile}`;
 
-  if (!supabase) {
-  setLoading(false);
-  setError("Supabase configuration is missing.");
-  return;
-}
-    
-  const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       phone,
       password,
     });
@@ -100,7 +94,10 @@ export default function Login() {
       </form>
 
       {error && (
-        <p className="muted" style={{ color: "#dc2626", marginTop: 14 }}>
+        <p
+          className="muted"
+          style={{ color: "#dc2626", marginTop: 14 }}
+        >
           {error}
         </p>
       )}
